@@ -10,8 +10,11 @@ public class CardView extends FrameLayout {
     // 卡片文字
     private TextView tv_num;
 
-    public CardView(Context context) {
+    public CardView(Context context, int height, int width) {
         super(context);
+
+        this.setMinimumHeight(height);
+        this.setMinimumWidth(width);
         // 初始化TextView
         tv_num = new TextView(getContext());
         // 卡片文字大小

@@ -49,14 +49,17 @@ class MainActivity : AppCompatActivity() {
         columnCounts = 4
         gridView = findViewById<GridView>(R.id.gridView)
         gridView.numColumns = columnCounts
-//        val baseAdapter = CardAdapter(this, game)
-//        gridView.adapter = baseAdapter
 
         val cardWidth = gridView.width/4
         addCard(cardWidth, cardWidth)
 
-        val mAdapterHot = ArrayAdapter<CardView>(this@MainActivity, R.layout.cardview, game)
-        gridView.adapter = mAdapterHot
+        val baseAdapter = CardAdapter(this, game)
+        gridView.adapter = baseAdapter
+
+
+
+//        val mAdapterHot = ArrayAdapter<CardView>(this@MainActivity, R.layout.cardview, game)
+//        gridView.adapter = mAdapterHot
 
         gridView.setOnTouchListener { v: View, event: MotionEvent ->
             tochEvent(event)
@@ -119,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         // 循环添加
         for (i in 0..3) {
             for (j in 0..3) {
-                c = CardView(gridView.findViewById<TextView>(R.id.num).context)
+                c = CardView(gridView.context, cardHeight, cardWidth)
                 // num为随机数
                 c.num = 2
 

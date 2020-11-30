@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 
 
-class CardAdapter(private var context: Context, private var cards: Array<Int>): BaseAdapter() {
+class CardAdapter(private var context: Context, private var cards: MutableList<CardView>): BaseAdapter() {
     private var layoutInflater: LayoutInflater? = null
     private lateinit var textView: TextView
     override fun getCount(): Int {
@@ -35,7 +35,7 @@ class CardAdapter(private var context: Context, private var cards: Array<Int>): 
         }
         textView = convertView!!.findViewById(R.id.num)
 
-        textView.text = cards[position].toString()
+        textView.text = cards[position].num.toString()
         return convertView
     }
 
