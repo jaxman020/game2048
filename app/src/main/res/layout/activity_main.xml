@@ -6,28 +6,34 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello World!" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <GridView
-        android:id="@+id/gridView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:columnWidth="50pt"
-        android:gravity="center"
-        android:stretchMode="columnWidth"
-        android:background="#757614"/>
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:stretchMode="columnWidth"
+            android:layout_margin="10dp"
+            android:background="#757614"/>
 
+    </RelativeLayout>
 </LinearLayout>
