@@ -1,41 +1,28 @@
 package com.example.game2048
 
-import android.animation.Animator
-import android.graphics.Point
-import android.graphics.PointF
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.game2048.adapters.CardAdapter
+import com.example.game2048.models.Card
 import kotlin.properties.Delegates
 
 
 class MainActivity : AppCompatActivity() {
-    private var columnCount: Int = 0
-    private var rowCount: Int = 0
     private lateinit var gridView : GridView
     private var rowCounts by Delegates.notNull<Int>()
     private var columnCounts by Delegates.notNull<Int>()
-    var game : MutableList<CardView> = mutableListOf<CardView>()
-    private val game1 = arrayOf(
-            0, 0, 0, 0,
-            0, 0, 0, 0,
-            0, 0, 0, 0,
-            0, 0, 0, 0
-    )
-    /**
-     * 移动之前时的model
-     */
-    private lateinit var beforeModel: Array<IntArray>
+    private lateinit var game : ArrayList<Card>
+    private lateinit var cardAdapter : CardAdapter
+
 
     private var x1 = 0.0f
     /*
      *   點擊事件起始點Y
      */
     private var y1 = 0.0f
-
-    var models = Array(4) { IntArray(4) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +37,11 @@ class MainActivity : AppCompatActivity() {
         gridView = findViewById<GridView>(R.id.gridView)
         gridView.numColumns = columnCounts
 
-        val cardWidth = gridView.width/4
-        addCard(cardWidth, cardWidth)
+//        val cardWidth = gridView.width/columnCounts
+        game = addCard()
 
-        val baseAdapter = CardAdapter(this, game)
-        gridView.adapter = baseAdapter
-
-
-
-//        val mAdapterHot = ArrayAdapter<CardView>(this@MainActivity, R.layout.cardview, game)
-//        gridView.adapter = mAdapterHot
+        cardAdapter = CardAdapter(this, game)
+        gridView.adapter = cardAdapter
 
         gridView.setOnTouchListener { v: View, event: MotionEvent ->
             tochEvent(event)
@@ -116,20 +98,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 添加卡片,参数为卡片的宽高，因为他是正方形，所以宽高都是cardWidth
-    private fun addCard(cardWidth: Int, cardHeight: Int) {
+    private fun addCard() : ArrayList<Card>{
         // 创建方块
-        var c: CardView
+        var list = ArrayList<Card>()
         // 循环添加
-        for (i in 0..3) {
-            for (j in 0..3) {
-                c = CardView(gridView.context, cardHeight, cardWidth)
-                // num为随机数
-                c.num = 2
+        for (i in 0..rowCounts-1) {
+            for (j in 0..columnCounts-1) {
 
-                game.add(c)
+                list.add(Card(0))
 //                gridView.addView(c, cardWidth, cardHeight)
             }
         }
+        return list
     }
     // 随机数
 //    private fun addRandom() {

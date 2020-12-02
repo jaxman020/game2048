@@ -30,10 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:gravity="center"
             android:stretchMode="columnWidth"
-            android:layout_margin="10dp"
-            android:background="#757614"/>
+            android:layout_margin="5dp"
+            android:background="@color/white"/>
 
     </RelativeLayout>
 </LinearLayout>
